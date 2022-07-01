@@ -9,7 +9,7 @@
 		<relativePath/>
 		<!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.alura.comex</groupId>
+	<groupId>br.com.alura.comex</groupId>
 	<artifactId>comex</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>comex</name>

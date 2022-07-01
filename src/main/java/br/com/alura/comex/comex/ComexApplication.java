@@ -1,4 +1,4 @@
-package com.alura.comex.comex;
+package br.com.alura.comex.comex;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

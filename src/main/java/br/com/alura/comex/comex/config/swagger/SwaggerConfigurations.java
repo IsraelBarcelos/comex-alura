@@ -1,5 +1,6 @@
 package br.com.alura.comex.comex.config.swagger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.annotation.Bean;
@@ -20,13 +21,16 @@ public class SwaggerConfigurations {
 
     @Bean
     public Docket api() {
+        List<RequestParameter> parametros = new ArrayList<>();
+        parametros.add(createRequestParameter("Authorization", false));
+
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build()
                 .ignoredParameterTypes(Usuario.class)
-                .globalRequestParameters(List.of(createRequestParameter("Authorization", false)));
+                .globalRequestParameters(parametros);
     }
 
     private RequestParameter createRequestParameter(String headerName, boolean required) {

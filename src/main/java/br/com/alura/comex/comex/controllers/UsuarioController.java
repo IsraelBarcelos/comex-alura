@@ -5,7 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,13 +24,13 @@ public class UsuarioController {
     private UsuarioRepository usuarioRepository;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping
     public ResponseEntity<UsuarioDto> cadastraUsuario(@RequestBody @Valid UserForm userForm) {
 
         try {
-            userForm.setSenha(passwordEncoder.encode(userForm.getSenha()));
+            userForm.setSenha(bCryptPasswordEncoder.encode(userForm.getSenha()));
             Usuario usuario = usuarioRepository.save(userForm.converter());
             return new ResponseEntity<UsuarioDto>(UsuarioDto.converter(usuario), HttpStatus.CREATED);
         } catch (Exception e) {
